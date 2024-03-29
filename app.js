@@ -52,13 +52,8 @@ if (pinAnswer.pin === myPin) {
                 choices: [500, 1000, 2000, 5000]
             }
         ]);
-        if (fastCashOperator.Cashlist > myBalance) {
-            console.log("You don't have enough balance to withdraw this amount");
-        }
-        else {
-            myBalance -= fastCashOperator.Cashlist;
-            console.log(`Your remaining balance is ${myBalance}`);
-        }
+        myBalance -= fastCashOperator.Cashlist;
+        console.log(`Your remaining balance is ${myBalance}`);
     }
     //When user entered wrong pin hai
 }

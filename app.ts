@@ -58,12 +58,9 @@ if (pinAnswer.pin === myPin) {
             }
         ]);
 
-        if (fastCashOperator.Cashlist > myBalance) {
-            console.log("You don't have enough balance to withdraw this amount");
-        } else {
             myBalance -= fastCashOperator.Cashlist;
             console.log(`Your remaining balance is ${myBalance}`);
-        }
+        
     }
     //When user entered wrong pin hai
 } else {
