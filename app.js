@@ -1,18 +1,22 @@
 #! /usr/bin/env node 
 import inquirer from "inquirer";
+import chalk from "chalk";
 // userData
 let myBalance = 10000;
-let myPin = 55667;
+let myPin = [55665, 55666, 55667, 55668, 55669, 55670];
+console.log(`${chalk.bold.bold.blue("Welcome to My ATM Machine")}`);
+console.log(`${chalk.bold.italic.green("Acceptable pin code(55665-55670)")}`);
+console.log("-".repeat(50));
 let pinAnswer = await inquirer.prompt([
     {
         name: "pin",
-        message: "Enter your Pin",
+        message: "Enter your Pin:",
         type: "number",
     }
 ]);
 // Choices
-if (pinAnswer.pin === myPin) {
-    console.log("Correct pin code!!!");
+if (myPin.includes(pinAnswer.pin)) {
+    console.log(`${chalk.bold.italic.green("Correct pin code!!!")}`);
     let operationAns = await inquirer.prompt([
         {
             name: "operation",
@@ -52,11 +56,16 @@ if (pinAnswer.pin === myPin) {
                 choices: [500, 1000, 2000, 5000]
             }
         ]);
-        myBalance -= fastCashOperator.Cashlist;
-        console.log(`Your remaining balance is ${myBalance}`);
+        if (fastCashOperator.Cashlist > myBalance) {
+            console.log("You don't have enough balance to withdraw this amount");
+        }
+        else {
+            myBalance -= fastCashOperator.Cashlist;
+            console.log(`Your remaining balance is ${myBalance}`);
+        }
     }
     //When user entered wrong pin hai
 }
 else {
-    console.log("Incorrect Pin Code");
+    console.log(`${chalk.bold.italic.red("Incorrect Pin Code")}`);
 }
